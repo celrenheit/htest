@@ -27,6 +27,7 @@ func TestRequests(t *testing.T) {
 			Name:  "batman",
 			Value: "htest",
 		})
+		w.WriteHeader(http.StatusOK)
 	})
 
 	mux.HandleFunc("/json", func(w http.ResponseWriter, r *http.Request) {
