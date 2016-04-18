@@ -123,6 +123,6 @@ func (r *requester) SendString(data string) Requester {
 func (r *requester) Do() ResponseAsserter {
 	w := httptest.NewRecorder()
 	r.handler.ServeHTTP(w, r.request)
-
+	w.Flush()
 	return NewResponseAsserter(r.t, w, r.request)
 }
