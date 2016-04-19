@@ -38,6 +38,9 @@ type ResponseAsserter interface {
 	// ExpectJSON triggers an error if actual body received is different from the expected one.
 	// Before comparing it marshals the data passed a argument using json.Marshal
 	ExpectJSON(data interface{}) ResponseAsserter
+
+	// Recorder returns the underlying ResponseRecorder instance
+	Recorder() *httptest.ResponseRecorder
 }
 
 type responseAsserter struct {
@@ -153,6 +156,10 @@ func (ra *responseAsserter) errorFormatterKV(kind, key, verb string, expected, a
 	}
 
 	return fmt.Sprintf("%s %sshould %s %s but got %s", magenta(strings.Title(kind)), cyan(key), verb, green(expected), red(actual))
+}
+
+func (ra *responseAsserter) Recorder() *httptest.ResponseRecorder {
+	return ra.w
 }
 
 func wrapWithQuotesForString(i interface{}) interface{} {
