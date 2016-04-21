@@ -49,7 +49,7 @@ type Requester interface {
 type requester struct {
 	method, path string
 	body         io.Reader
-	t            *testing.T
+	t            testing.TB
 	handler      http.Handler
 	request      *http.Request
 }

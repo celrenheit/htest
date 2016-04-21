@@ -30,11 +30,11 @@ type HTTPTester interface {
 
 type htest struct {
 	handler http.Handler
-	t       *testing.T
+	t       testing.TB
 }
 
 // New returns a new HTTPTester instance
-func New(t *testing.T, handler http.Handler) HTTPTester {
+func New(t testing.TB, handler http.Handler) HTTPTester {
 	return &htest{
 		handler: handler,
 		t:       t,

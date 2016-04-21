@@ -44,14 +44,14 @@ type ResponseAsserter interface {
 }
 
 type responseAsserter struct {
-	t            *testing.T
+	t            testing.TB
 	w            *httptest.ResponseRecorder
 	r            *http.Request
 	printRequest sync.Once
 }
 
 // NewResponseAsserter create a new response asserter
-func NewResponseAsserter(t *testing.T, w *httptest.ResponseRecorder, r *http.Request) ResponseAsserter {
+func NewResponseAsserter(t testing.TB, w *httptest.ResponseRecorder, r *http.Request) ResponseAsserter {
 	ra := &responseAsserter{
 		t: t,
 		w: w,
