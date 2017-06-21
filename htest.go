@@ -1,6 +1,7 @@
 package htest
 
 import (
+	"bytes"
 	"io"
 	"net/http"
 	"testing"
@@ -75,7 +76,7 @@ func (h *htest) Patch(path string) Requester {
 }
 
 func (h *htest) Request(method, path string) Requester {
-	return h.RequestWithBody(method, path, nil)
+	return h.RequestWithBody(method, path, bytes.NewReader([]byte{}))
 }
 
 func (h *htest) RequestWithBody(method, path string, body io.Reader) Requester {
